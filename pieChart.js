@@ -5,17 +5,17 @@ class PieChart {
         id: 'ID' + Math.floor(Math.random() * 1000000),
         svgWidth: 400,
         svgHeight: 400,
-        marginTop: 75,
+        marginTop: 0,
         image: '',
-        marginBottom: 75,
-        marginRight: 105,
-        marginLeft: 105,
+        marginBottom: 0,
+        marginRight: 0,
+        marginLeft: 0,
         container: 'body',
         defaultFontSize: 12,
         percentCircleRadius: 14,
         labelMargin: 10,
         defaultTextFill: '#6F68A7',
-        backCircleColor: '#EAF0FB',
+        backCircleColor: '#0A9396',
         defaultFont: 'Helvetica',
         valueAccessor: d => d.value,
         round: (d, sum) => Math.round((d.data.value / sum) * 100),
@@ -141,14 +141,10 @@ class PieChart {
         .attr('height', calc.innerRadius * 2);
   
       fo.patternify({ tag: 'xhtml:div', selector: 'for-center-div' })
-        .html(`<div style="height:${calc.innerRadius *
-        2}px;display:flex;justify-content:center;align-items:center;text-align:center">
-               <img height="${calc.innerRadius * 2 -
-                 20}"  style="border:2px solid ${backCircleColor};border-radius:40px" width="${calc.innerRadius *
-        2 -
-        20}" src="${image}" />
-  </div>
-            </div>`);
+        .html(`<div style="height:${calc.innerRadius * 2}px;display:flex;justify-content:center;align-items:center;text-align:center">
+               <img height="${calc.innerRadius * 2 - 5}"  style="border:2px solid ${backCircleColor};border-radius:40px" width="${calc.innerRadius * 2 - 5}" src="${image}" />
+                 </div>
+              </div>`);
     }
   
     setLayouts() {
@@ -373,112 +369,7 @@ class PieChart {
         })
         .on('mouseleave.color', function(event, d) {
           d3.select(this).attr('fill', that.getColor(d));
-        });
-  
-      pieG
-        .patternify({
-          tag: 'polyline',
-          selector: 'pie-label-line',
-          data: d => [d]
-        })
-        .attr('points', d => {
-          let textWidth =
-            this.getTextWidth(d.data.key || '', { fontSize: defaultFontSize }) +
-            labelMargin;
-          if (this.isRightSide(d)) {
-            textWidth = -textWidth;
-          }
-          return `
-      ${arc.centroid(d)[0]},
-      ${arc.centroid(d)[1]} 
-      ${arcLabel.centroid(this.correct(d))[0] + d.xOffset},
-      ${arcLabel.centroid(this.correct(d))[1] + d.yOffset} 
-      ${arcLabel.centroid(this.correct(d))[0] - textWidth + d.xOffset},
-      ${arcLabel.centroid(this.correct(d))[1] + d.yOffset}
-  `;
-        })
-        .attr('stroke', defaultTextFill)
-        .attr('fill', 'none')
-        .attr('pointer-events', 'none')
-        .style('opacity', this.getLabelOpacity);
-  
-      pieG
-        .patternify({
-          tag: 'circle',
-          selector: 'pie-center-points',
-          data: d => [d]
-        })
-        .attr('cx', d => arc.centroid(d)[0])
-        .attr('cy', d => arc.centroid(d)[1])
-        .style('opacity', this.getLabelOpacity)
-        .attr('fill', '#FFFFFF')
-        .attr('r', 2)
-        .attr('pointer-events', 'none');
-  
-      pieG
-        .patternify({ tag: 'text', selector: 'pie-texts', data: d => [d] })
-        .text(d => d.data.key)
-        .attr('x', d => {
-          let x = arcLabel.centroid(this.correct(d))[0];
-          if (this.isRightSide(d)) x += labelMargin - 5;
-          else x -= labelMargin - 5;
-          return x + d.xOffset;
-        })
-        .attr('text-anchor', d => {
-          if (this.isRightSide(d)) return 'start';
-          return 'end';
-        })
-        .attr('font-size', defaultFontSize)
-        .attr('y', d => arcLabel.centroid(this.correct(d))[1] - 4 + d.yOffset)
-        .attr('fill', defaultTextFill)
-        .style('opacity', this.getLabelOpacity);
-  
-      pieG
-        .patternify({
-          tag: 'text',
-          selector: 'pie-percent-texts',
-          data: d => [d]
-        })
-        .text(d => round(d, sum) + '%')
-        .attr('alignment-baseline', 'middle')
-        .attr('x', d => {
-          let textWidth =
-            this.getTextWidth(d.data.key || '', { fontSize: defaultFontSize }) +
-            labelMargin +
-            percentCircleRadius;
-          if (this.isRightSide(d)) {
-            textWidth = -textWidth;
-          }
-          return arcLabel.centroid(this.correct(d))[0] - textWidth + d.xOffset;
-        })
-        .attr('y', d => arcLabel.centroid(this.correct(d))[1] + d.yOffset)
-        .attr('text-anchor', 'middle')
-        .attr('font-size', 11)
-        .attr('fill', defaultTextFill)
-        .style('opacity', this.getLabelOpacity);
-  
-      pieG
-        .patternify({
-          tag: 'circle',
-          selector: 'pie-percent-circle',
-          data: d => [d]
-        })
-        .attr('stroke', defaultTextFill)
-        .attr('r', percentCircleRadius)
-        .style('opacity', this.getLabelOpacity)
-        .attr('fill', 'none')
-        .attr('cx', d => {
-          let textWidth =
-            this.getTextWidth(d.data.key || '', { fontSize: defaultFontSize }) +
-            labelMargin +
-            percentCircleRadius;
-          if (this.isRightSide(d)) {
-            textWidth = -textWidth;
-          }
-          return arcLabel.centroid(this.correct(d))[0] - textWidth + d.xOffset;
-        })
-        .attr('cy', d => arcLabel.centroid(this.correct(d))[1] - 1.1 + d.yOffset);
-  
+        });  
       //  centroid = arcGenerator.centroid(d);
     }
   
