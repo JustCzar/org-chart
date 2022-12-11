@@ -342,14 +342,6 @@ class PieChart {
       left.reverse().forEach(process);
   
       const that = this;
-      centerPoint
-        .patternify({
-          tag: 'path',
-          selector: 'pie-background',
-          data: pie([{ value: 1 }])
-        })
-        .attr('d', arcOuter)
-        .attr('fill', backCircleColor);
   
       const pieG = centerPoint.patternify({
         tag: 'g',

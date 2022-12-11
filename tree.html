@@ -5,6 +5,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Metrophobic">
   <link rel="stylesheet" href="tree.css">
 </head>
 
@@ -29,9 +30,9 @@
         .container('.chart-container')
         .svgHeight(window.innerHeight - 10)
         .data(dataFlattened)
-        .nodeHeight((d) => 160)
+        .nodeHeight((d) => 110)
         .nodeWidth((d) => {
-          if (d.depth == 0) return 400;
+          if (d.depth == 0) return 300;
           return 330;
         })
         .childrenMargin((d) => 90)
@@ -61,16 +62,16 @@
         .nodeContent(function (d, i, arr, state) {
           return `
           <div class="node-content" style="width:${d.width}px;height:${d.height}px;">
+          <div class="node-state"></div>
           <div class="card">
             <div class="pie-chart-wrapper"></div>
-          
-            <div class="card-text">
-              <div class="card-name-text"> ${d.data.name} </div>
-              <div class="card-position-text"> ${d.data.positionName || ''} </div>
-              <div class="card-department-text"> ${d.data.id || ''} </div>
-              ${d.depth == 0 ? ` <br/>
-                <div style="max-width:200px;font-size:10px;"> </div>` : ''
-                }
+
+              <div class="card-text-block">
+                <div class="card-name-text"> ${d.data.name} </div>
+                <div class="card-position-text"> ${d.data.positionName || ''} </div>
+                <div class="card-department-text"> ${d.data.id || ''} </div>
+              </div>
+              ${d.depth == 0 ? ` <br/> <div style="max-width:200px;font-size:10px;"> </div>` : '' }
             </div>
           </div>
           
@@ -97,12 +98,12 @@
             // General pie chart invokation code
             new PieChart()
               .data([
-                { key: 'plan', color: '#0A9396', value: val },
-                { key: 'exec', color: '#BB3E03', value: 100 - val },
+                { key: 'plan', color: '#F3EFE0', value: val },
+                { key: 'exec', color: '#22A39F', value: 100 - val },
               ])
               .container(pieChartWrapperNode)
-              .svgHeight(100)
-              .svgWidth(100)
+              .svgHeight(74)
+              .svgWidth(74)
               .marginTop(0)
               .image(d.data.imageUrl)
               .backCircleColor('#005F73')
