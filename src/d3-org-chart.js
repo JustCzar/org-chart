@@ -926,6 +926,13 @@ export class OrgChart {
                 }
                 return 0;
             });
+        
+        // NEW count all
+        nodeUpdate
+            .select("...")
+            .attr("totalSubordinates", ({data}) => {
+                return data._totalSubordinates > 0 ? null : 'none';
+            });
 
         // Restyle node button circle
         nodeUpdate

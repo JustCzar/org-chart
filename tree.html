@@ -74,13 +74,19 @@
                 </div>
                 ${d.depth == 0 ? ` <br/> <div style="max-width:200px;font-size:10px;"> </div>` : ''}
               </div>
-              <div class="card-stats-direct-subordinates">
+              <div class="card-stats-subordinates">
+                <div class="card-stats-total-subordinates-img">
+                  <img src="./icons/total_hierarchy.svg" alt="hierarchy" width="17" height="17">
+                </div>
+                <div class="card-stats-total-subordinates-text">
+                  ${d.data._totalSubordinates || '0'}   
+                </div>
                 <div class="card-stats-direct-subordinates-img">
                   <img src="./icons/icon _hierarchy.svg" alt="hierarchy" width="17" height="17">
                 </div>
                 <div class="card-stats-direct-subordinates-text">
-                  ${d.data._directSubordinates || '10'}   
-                </div>       
+                  ${d.data._directSubordinates || '0'}   
+                </div>
               </div>              
             </div>
           </div>          

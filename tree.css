@@ -130,7 +130,7 @@ table {
     margin-bottom: 32px;
 }
 
-.card-stats-direct-subordinates {
+.card-stats-subordinates {
     max-height: 17px;
     vertical-align: middle;
     align-items: center;
@@ -141,10 +141,15 @@ table {
     vertical-align: middle;
 }
 
-.card-stats-direct-subordinates-text{
+.card-stats-direct-subordinates-text, .card-stats-total-subordinates-text{
     margin-left: 6px;
 }
 
+.card-stats-total-subordinates-img{
+    max-width: 17px;
+}
+
 .card-stats-direct-subordinates-img{
+    margin-left: 10px;
     max-width: 17px;
 }
