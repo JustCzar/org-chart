@@ -252,7 +252,7 @@ class PieChart {
         attrs.svgHeight - attrs.marginBottom - calc.chartTopMargin;
       calc.radius = Math.min(calc.chartWidth, calc.chartHeight) / 2;
       calc.innerRadius = calc.radius * 0.7;
-      if (calc.innerRadius < 100) calc.innerRadius = calc.radius * 0.8;
+      if (calc.innerRadius < 100) calc.innerRadius = calc.radius * 0.91;
   
       this.setState({ calc });
     }

@@ -47,18 +47,11 @@ table {
 
 /* NODE */
 .node-content {
+    display: flex;
     font-family: "Metrophobic", sans-serif;
     background-color: #222831;
     border-radius: 4px;
     border: 2px solid #005F73;
-    display: flex;
-}
-
-.pie-chart-wrapper {
-    height: 100px;
-    width: max-content;
-    margin-left: 3px;
-
 }
 
 .node-state {
@@ -67,15 +60,40 @@ table {
     background: #393E46;
 }
 
+.node-button {
+    background-color: #393E46;
+
+    color: #FFF;
+    width: 14px;
+    height: 14px;
+    padding: 3px;
+    font-size: 10px;
+    margin: auto auto;
+}
+
 /* CARD */
 
 .card {
     color: #2CAAE5;
-    display: flex;
+    display: block;
+    width: 100%;
 
     margin-top: 8px;
     margin-left: 3px;
-    margin-bottom: 10px;
+}
+
+.card-emp-info {
+    max-height: 74px;
+    display: flex;
+
+    margin-bottom: 11px;
+}
+
+.pie-chart-wrapper {
+    max-height: 100px;
+    max-width: max-content;
+    margin-left: 3px;
+
 }
 
 .card-text-block {
@@ -110,4 +128,23 @@ table {
 
 .card-position {
     margin-bottom: 32px;
+}
+
+.card-stats-direct-subordinates {
+    max-height: 17px;
+    vertical-align: middle;
+    align-items: center;
+
+    display: flex;
+    color: #FFFFFF;
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+.card-stats-direct-subordinates-text{
+    margin-left: 6px;
+}
+
+.card-stats-direct-subordinates-img{
+    max-width: 17px;
 }

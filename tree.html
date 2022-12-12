@@ -41,10 +41,10 @@
         .neightbourMargin((a, b) => 50)
         .siblingsMargin((d) => 100)
         .buttonContent(({ node, state }) => {
-          return `<div style="color:#2CAAE5;border-radius:5px;padding:3px;font-size:10px;margin:auto auto;background-color:#040910;border: 1px solid #2CAAE5"> <span style="font-size:9px">${node.children
+          return `<div class="node-button">${node.children
             ? `<i class="fas fa-angle-up"></i>`
             : `<i class="fas fa-angle-down"></i>`
-            }</span> ${node.data._directSubordinates}  </div>`;
+            } </div>`;
         })
         .linkUpdate(function (d, i, arr) {
           d3.select(this)
@@ -62,18 +62,28 @@
         .nodeContent(function (d, i, arr, state) {
           return `
           <div class="node-content" style="width:${d.width}px;height:${d.height}px;">
-          <div class="node-state"></div>
-          <div class="card">
-            <div class="pie-chart-wrapper"></div>
+            <div class="node-state"></div>
+            <div class="card">
+              <div class="card-emp-info">
+                <div class="pie-chart-wrapper"></div>
 
-              <div class="card-text-block">
-                <div class="card-name-text"> ${d.data.name} </div>
-                <div class="card-position-text"> ${d.data.positionName || ''} </div>
-                <div class="card-department-text"> ${d.data.id || ''} </div>
+                <div class="card-text-block">
+                  <div class="card-name-text"> ${d.data.name} </div>
+                  <div class="card-position-text"> ${d.data.positionName || ''} </div>
+                  <div class="card-department-text"> ${d.data.id || ''} </div>
+                </div>
+                ${d.depth == 0 ? ` <br/> <div style="max-width:200px;font-size:10px;"> </div>` : ''}
               </div>
-              ${d.depth == 0 ? ` <br/> <div style="max-width:200px;font-size:10px;"> </div>` : '' }
+              <div class="card-stats-direct-subordinates">
+                <div class="card-stats-direct-subordinates-img">
+                  <img src="./icons/icon _hierarchy.svg" alt="hierarchy" width="17" height="17">
+                </div>
+                <div class="card-stats-direct-subordinates-text">
+                  ${d.data._directSubordinates || '10'}   
+                </div>       
+              </div>              
             </div>
-          </div>
+          </div>          
           
           </div>`;
         })
@@ -90,25 +100,25 @@
               d.data._highlighted || d.data._upToTheRootHighlighted ? 40 : 1
             );
 
-            const pieChartWrapperNode = d3
-              .select(this)
-              .select('.pie-chart-wrapper')
-              .node();
-            const val = (d.data.name.length * 5) % 100; // Dummy calc
-            // General pie chart invokation code
-            new PieChart()
-              .data([
-                { key: 'plan', color: '#F3EFE0', value: val },
-                { key: 'exec', color: '#22A39F', value: 100 - val },
-              ])
-              .container(pieChartWrapperNode)
-              .svgHeight(74)
-              .svgWidth(74)
-              .marginTop(0)
-              .image(d.data.imageUrl)
-              .backCircleColor('#005F73')
-              .defaultFont('Inter')
-              .render();
+          const pieChartWrapperNode = d3
+            .select(this)
+            .select('.pie-chart-wrapper')
+            .node();
+          const val = (d.data.name.length * 5) % 100; // Dummy calc
+          // General pie chart invokation code
+          new PieChart()
+            .data([
+              { key: 'plan', color: '#F3EFE0', value: val },
+              { key: 'exec', color: '#22A39F', value: 100 - val },
+            ])
+            .container(pieChartWrapperNode)
+            .svgHeight(74)
+            .svgWidth(74)
+            .marginTop(0)
+            .image(d.data.imageUrl)
+            .backCircleColor('#005F73')
+            .defaultFont('Inter')
+            .render();
         })
         .render();
 

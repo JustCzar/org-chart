@@ -26,7 +26,7 @@ export class OrgChart {
             firstDraw: true,
             svgWidth: 800,
             svgHeight: window.innerHeight - 100,
-            scaleExtent:[0.001, 20],
+            scaleExtent: [0.001, 20],
             container: "body",
             defaultTextFill: "#2C3E50",
             defaultFont: "Helvetica",
